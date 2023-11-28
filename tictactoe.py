@@ -6,6 +6,7 @@ def insertLetter(letter,pos):
 def spaceIsFree(pos):
     return board[pos] == ' '
 
+# funktion för hur brädan ser ut när den printas
 def printBoard(board):
     print('   |   |   ')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
@@ -38,7 +39,7 @@ def IsWinner(b,l):
 def playerMove():
     run = True
     while run:
-        move = input("please select a position to enter the X between 1 to 9\n")
+        move = input("Var snäll och välj en position för x mellan 1 och 9\n")
         try:
             move = int(move)
             if move > 0 and move < 10:
@@ -46,12 +47,12 @@ def playerMove():
                     run = False
                     insertLetter('X' , move)
                 else:
-                    print('Sorry, this space is occupied')
+                    print('Förlåt, denna plats är redan tagen')
             else:
-                print('please type a number between 1 and 9')
+                print('Var snäll och skriv ett numemr från 1 till 9')
 
         except:
-            print('Please type a number')
+            print('Var snäll och skriv in ett nummer')
 
 def computerMove():
     possibleMoves = [x for x , letter in enumerate(board) if letter == ' ' and x != 0  ]
@@ -94,7 +95,7 @@ def selectRandom(li):
     return li[r]
 
 def main():
-    print("Welcome to the game!")
+    print("Välkommen til spelet!")
     printBoard(board)
 
     while not(isBoardFull(board)):
@@ -102,7 +103,7 @@ def main():
             playerMove()
             printBoard(board)
         else:
-            print("sorry you loose!")
+            print("Förlåt du förlora!")
             break
 
         if not(IsWinner(board , 'X')):
@@ -111,21 +112,21 @@ def main():
                 print(" ")
             else:
                 insertLetter('O' , move)
-                print('computer placed an o on position' , move , ':')
+                print('Datorn placerade o i positionen' , move , ':')
                 printBoard(board)
         else:
-            print("you win!")
+            print("Du vann!")
             break
 
 
 
 
     if isBoardFull(board):
-        print("Tie game")
+        print("Lika spel")
 
 while True:
-    x = input("Do you want to play? Press y for yes or n for no (y/n)\n")
-    if x.lower() == 'y':
+    x = input("Vill du spela? Tryck j for ja eller n för nej (j/n)\n")
+    if x.lower() == 'j':
         board = [' ' for x in range(10)]
         print('--------------------')
         main()
